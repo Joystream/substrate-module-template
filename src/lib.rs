@@ -178,9 +178,9 @@
 //! your module configuration trait with the `INSERT_CUSTOM_MODULE_NAME` trait.
 //!
 //! ```rust
-//! use <INSERT_CUSTOM_MODULE_NAME>;
+//! // use <INSERT_CUSTOM_MODULE_NAME>;
 //!
-//! pub trait Trait: <INSERT_CUSTOM_MODULE_NAME>::Trait { }
+//! // pub trait Trait: <INSERT_CUSTOM_MODULE_NAME>::Trait { }
 //! ```
 //!
 //! ### Simple Code Snippet
@@ -218,6 +218,10 @@ use srml_support::traits::Currency;
 use srml_support::{decl_event, decl_module, decl_storage, dispatch::Result, StorageValue};
 use system::ensure_signed;
 
+pub trait MembershipRegistry<T: system::Trait> {
+    fn ensure_member(who: T::AccountId) -> Result;
+}
+
 pub type BalanceOf<T> =
     <<T as Trait>::Currency as Currency<<T as system::Trait>::AccountId>>::Balance;
 
@@ -231,6 +235,8 @@ pub trait Trait: system::Trait + Sized {
     type Event: From<Event<Self>> + Into<<Self as system::Trait>::Event>;
 
     type Currency: Currency<Self::AccountId>;
+
+    type MembershipRegistry: MembershipRegistry<Self>;
 }
 
 decl_storage! {
@@ -362,7 +368,9 @@ decl_module! {
         // If you don't respect these rules, it is likely that your chain will be attackable.
         fn accumulate_dummy(origin, increase_by: BalanceOf<T>) -> Result {
             // This is a public call, so we ensure that the origin is some signed account.
-            let _sender = ensure_signed(origin)?;
+            let sender = ensure_signed(origin)?;
+
+            let _ = T::MembershipRegistry::ensure_member(sender)?;
 
             // Read the value of dummy from storage.
             // let dummy = Self::dummy();
@@ -500,7 +508,16 @@ mod tests {
     impl Trait for Test {
         type Event = ();
         type Currency = Balances;
+        type MembershipRegistry = MockMembershipRegistry;
     }
+
+    pub struct MockMembershipRegistry {}
+    impl MembershipRegistry<Test> for MockMembershipRegistry {
+        fn ensure_member(_who: <Test as system::Trait>::AccountId) -> Result {
+            Ok(())
+        }
+    }
+
     type Example = Module<Test>;
     type Balances = balances::Module<Test>;
 
