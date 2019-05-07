@@ -1,4 +1,5 @@
-## runtime example module:
+## Substrate Runtime Example Module
+
 A simple example of a runtime module demonstrating
 concepts, APIs and structures common to most runtime modules.
 
@@ -10,8 +11,7 @@ The main `lib.rs` also has a template for writing documentation for the module, 
 Since there isn't yet a stable substrate release we are still using a commit hash when referencing the dependencies on substrate packages in Cargo.toml. The same commit hash should be used in the runtime library.
 Eventually when a stable API is reached we can move to using version numbers and get dependencies from published crates on crates.io
 
-Consuming the module in a substrate runtime:
-Here is a [sample PR](https://github.com/joystream/substrate-runtime-joystream/) for how to use the module in the Joystream runtime.
+Here is a [sample PR](https://github.com/Joystream/substrate-runtime-joystream/pull/57) for how to use the module in the Joystream runtime.
 
 Rust docs can be viewed by running:
 
