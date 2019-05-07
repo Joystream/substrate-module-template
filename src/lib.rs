@@ -14,13 +14,15 @@
 // You should have received a copy of the GNU General Public License
 // along with Substrate.  If not, see <http://www.gnu.org/licenses/>.
 
+// Copyright 2019 Joystream Contributors
+
 //! # Example Module
 //!
 //! <!-- Original author of paragraph: @gavofyork -->
 //! The Example: A simple example of a runtime module demonstrating
 //! concepts, APIs and structures common to most runtime modules.
 //!
-//! Run `cargo doc --package srml-example --open` to view this module's documentation.
+//! Run `cargo doc --package example-module --open` to view this module's documentation.
 //!
 //! ### Documentation Guidelines:
 //!
@@ -490,12 +492,12 @@ impl<T: Trait> Module<T> {
 mod tests {
     use super::*;
 
-    use sr_io::with_externalities;
+    use primitives::{Blake2Hasher, H256};
+    use runtime_io::with_externalities;
     use srml_support::{assert_ok, impl_outer_origin};
-    use substrate_primitives::{Blake2Hasher, H256};
     // The testing primitives are very useful for avoiding having to work with signatures
     // or public keys. `u64` is used as the `AccountId` and no `Signature`s are requried.
-    use sr_primitives::{
+    use runtime_primitives::{
         testing::{Digest, DigestItem, Header},
         traits::{BlakeTwo256, IdentityLookup, OnFinalize, OnInitialize},
         BuildStorage,
@@ -541,7 +543,7 @@ mod tests {
 
     // This function basically just builds a genesis storage key/value store according to
     // our desired mockup.
-    fn new_test_ext() -> sr_io::TestExternalities<Blake2Hasher> {
+    fn new_test_ext() -> runtime_io::TestExternalities<Blake2Hasher> {
         let mut t = system::GenesisConfig::<Test>::default()
             .build_storage()
             .unwrap()
