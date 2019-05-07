@@ -16,13 +16,13 @@
 
 // Copyright 2019 Joystream Contributors
 
-//! # Example Module
+//! # Runtime Example Module
 //!
 //! <!-- Original author of paragraph: @gavofyork -->
 //! The Example: A simple example of a runtime module demonstrating
 //! concepts, APIs and structures common to most runtime modules.
 //!
-//! Run `cargo doc --package example-module --open` to view this module's documentation.
+//! Run `cargo doc --package runtime-example-module --open` to view this module's documentation.
 //!
 //! ### Documentation Guidelines:
 //!
@@ -47,206 +47,191 @@
 //! </ul>
 //!
 //! ### Documentation Template:<br>
+//! Add heading with custom module name
 //!
-//! Copy and paste this template from srml/example/src/lib.rs into file srml/<INSERT_CUSTOM_MODULE_NAME>/src/lib.rs of
-//! your own custom module and complete it.
-//! <details><p><pre>
-//! // Add heading with custom module name
+//! # <INSERT_CUSTOM_MODULE_NAME> Module
 //!
-//! \# <INSERT_CUSTOM_MODULE_NAME> Module
+//! Add simple description
 //!
-//! // Add simple description
+//! Include the following links that shows what trait needs to be implemented to use the module
+//! and the supported dispatchables that are documented in the Call enum.
 //!
-//! // Include the following links that shows what trait needs to be implemented to use the module
-//! // and the supported dispatchables that are documented in the Call enum.
+//! - [`<INSERT_CUSTOM_MODULE_NAME>::Trait`](./trait.Trait.html)
+//! - [`Call`](./enum.Call.html)
+//! - [`Module`](./struct.Module.html)
 //!
-//! - \[`<INSERT_CUSTOM_MODULE_NAME>::Trait`](./trait.Trait.html)
-//! - \[`Call`](./enum.Call.html)
-//! - \[`Module`](./struct.Module.html)
-//!
-//! \## Overview
+//! ## Overview
 //!
 //! <!-- Original author of paragraph: Various. See https://github.com/paritytech/substrate-developer-hub/issues/44 -->
-//! // Short description of module purpose.
-//! // Links to Traits that should be implemented.
-//! // What this module is for.
-//! // What functionality the module provides.
-//! // When to use the module (use case examples).
-//! // How it is used.
-//! // Inputs it uses and the source of each input.
-//! // Outputs it produces.
+//! Short description of module purpose.
+//! Links to Traits that should be implemented.
+//! What this module is for.
+//! What functionality the module provides.
+//! When to use the module (use case examples).
+//! How it is used.
+//! Inputs it uses and the source of each input.
+//! Outputs it produces.
 //!
 //! <!-- Original author of paragraph: @Kianenigma in PR https://github.com/paritytech/substrate/pull/1951 -->
 //! <!-- and comment https://github.com/paritytech/substrate-developer-hub/issues/44#issuecomment-471982710 -->
 //!
-//! \## Terminology
+//! ## Terminology
 //!
-//! // Add terminology used in the custom module. Include concepts, storage items, or actions that you think
-//! // deserve to be noted to give context to the rest of the documentation or module usage. The author needs to
-//! // use some judgment about what is included. We don't want a list of every storage item nor types - the user
-//! // can go to the code for that. For example, "transfer fee" is obvious and should not be included, but
-//! // "free balance" and "reserved balance" should be noted to give context to the module.
-//! // Please do not link to outside resources. The reference docs should be the ultimate source of truth.
-//!
-//! <!-- Original author of heading: @Kianenigma in PR https://github.com/paritytech/substrate/pull/1951 -->
-//!
-//! \## Goals
-//!
-//! // Add goals that the custom module is designed to achieve.
+//! Add terminology used in the custom module. Include concepts, storage items, or actions that you think
+//! deserve to be noted to give context to the rest of the documentation or module usage. The author needs to
+//! use some judgment about what is included. We don't want a list of every storage item nor types - the user
+//! can go to the code for that. For example, "transfer fee" is obvious and should not be included, but
+//! "free balance" and "reserved balance" should be noted to give context to the module.
+//! Please do not link to outside resources. The reference docs should be the ultimate source of truth.
 //!
 //! <!-- Original author of heading: @Kianenigma in PR https://github.com/paritytech/substrate/pull/1951 -->
 //!
-//! \### Scenarios
+//! ## Goals
+//!
+//! Add goals that the custom module is designed to achieve.
+//!
+//! <!-- Original author of heading: @Kianenigma in PR https://github.com/paritytech/substrate/pull/1951 -->
+//!
+//! ### Scenarios
 //!
 //! <!-- Original author of paragraph: @Kianenigma. Based on PR https://github.com/paritytech/substrate/pull/1951 -->
 //!
-//! \#### <INSERT_SCENARIO_NAME>
+//! #### <INSERT_SCENARIO_NAME>
 //!
-//! // Describe requirements prior to interacting with the custom module.
-//! // Describe the process of interacting with the custom module for this scenario and public API functions used.
+//! Describe requirements prior to interacting with the custom module.
+//! Describe the process of interacting with the custom module for this scenario and public API functions used.
 //!
-//! \## Interface
+//! ## Interface
 //!
-//! \### Supported Origins
+//! ### Supported Origins
 //!
-//! // What origins are used and supported in this module (root, signed, inherent)
-//! // i.e. root when <code>\`ensure_root\`</code> used
-//! // i.e. inherent when <code>\`ensure_inherent\`</code> used
-//! // i.e. signed when <code>\`ensure_signed\`</code> used
+//! What origins are used and supported in this module (root, signed, inherent)
+//! i.e. root when `ensure_root` used
+//! i.e. inherent when `ensure_inherent` used
+//! i.e. signed when `ensure_signed` used
 //!
-//! <code>\`inherent\`</code> <INSERT_DESCRIPTION>
+//! `inherent` <INSERT_DESCRIPTION>
 //!
 //! <!-- Original author of paragraph: @Kianenigma in comment -->
 //! <!-- https://github.com/paritytech/substrate-developer-hub/issues/44#issuecomment-471982710 -->
 //!
-//! \### Types
+//! ### Types
 //!
-//! // Type aliases. Include any associated types and where the user would typically define them.
+//! Type aliases. Include any associated types and where the user would typically define them.
 //!
-//! <code>\`ExampleType\`</code> <INSERT_DESCRIPTION>
+//! `ExampleType` <INSERT_DESCRIPTION>
 //!
 //! <!-- Original author of paragraph: ??? -->
 //!
-//! // Reference documentation of aspects such as `storageItems` and `dispatchable` functions should only be
-//! // included in the https://docs.rs Rustdocs for Substrate and not repeated in the README file.
 //!
-//! \### Dispatchable Functions
+//! ### Dispatchable Functions
 //!
 //! <!-- Original author of paragraph: @AmarRSingh & @joepetrowski -->
 //!
 //! // A brief description of dispatchable functions and a link to the rustdoc with their actual documentation.
 //!
-//! // <b>MUST</b> have link to Call enum
-//! // <b>MUST</b> have origin information included in function doc
-//! // <b>CAN</b> have more info up to the user
+//! <b>MUST</b> have link to Call enum
+//! <b>MUST</b> have origin information included in function doc
+//! <b>CAN</b> have more info up to the user
 //!
-//! \### Public Functions
+//! ### Public Functions
 //!
 //! <!-- Original author of paragraph: @joepetrowski -->
 //!
-//! // A link to the rustdoc and any notes about usage in the module, not for specific functions.
-//! // For example, in the balances module: "Note that when using the publicly exposed functions,
-//! // you (the runtime developer) are responsible for implementing any necessary checks
-//! // (e.g. that the sender is the signer) before calling a function that will affect storage."
+//! A link to the rustdoc and any notes about usage in the module, not for specific functions.
+//! For example, in the balances module: "Note that when using the publicly exposed functions,
+//! you (the runtime developer) are responsible for implementing any necessary checks
+//! (e.g. that the sender is the signer) before calling a function that will affect storage."
 //!
 //! <!-- Original author of paragraph: @AmarRSingh -->
 //!
-//! // It is up to the writer of the respective module (with respect to how much information to provide).
+//! It is up to the writer of the respective module (with respect to how much information to provide).
 //!
-//! \#### Public Inspection functions - Immutable (getters)
+//! #### Public Inspection functions - Immutable (getters)
 //!
-//! // Insert a subheading for each getter function signature
+//! Insert a subheading for each getter function signature
 //!
-//! \##### <code>\`example_getter_name()\`</code>
+//! ##### `example_getter_name()`
 //!
-//! // What it returns
-//! // Why, when, and how often to call it
-//! // When it could panic or error
-//! // When safety issues to consider
+//! What it returns
+//! Why, when, and how often to call it
+//! When it could panic or error
+//! When safety issues to consider
 //!
-//! \#### Public Mutable functions (changing state)
+//! #### Public Mutable functions (changing state)
 //!
-//! // Insert a subheading for each setter function signature
+//! Insert a subheading for each setter function signature
 //!
-//! \##### <code>\`example_setter_name(origin, parameter_name: T::ExampleType)\`</code>
+//! ##### `example_setter_name(origin, parameter_name: T::ExampleType)`
 //!
-//! // What state it changes
-//! // Why, when, and how often to call it
-//! // When it could panic or error
-//! // When safety issues to consider
-//! // What parameter values are valid and why
+//! What state it changes
+//! Why, when, and how often to call it
+//! When it could panic or error
+//! When safety issues to consider
+//! What parameter values are valid and why
 //!
-//! \### Storage Items
+//! ### Storage Items
 //!
-//! // Explain any storage items included in this module
+//! Explain any storage items included in this module
 //!
-//! \### Digest Items
+//! ### Digest Items
 //!
-//! // Explain any digest items included in this module
+//! Explain any digest items included in this module
 //!
-//! \### Inherent Data
+//! ### Inherent Data
 //!
-//! // Explain what inherent data (if any) is defined in the module and any other related types
+//! Explain what inherent data (if any) is defined in the module and any other related types
 //!
-//! \### Events:
+//! ### Events:
 //!
-//! // Insert events for this module if any
+//! Insert events for this module if any
 //!
-//! \### Errors:
+//! ### Errors:
 //!
-//! // Explain what generates errors
+//! Explain what generates errors
 //!
-//! \## Usage
+//! ## Usage
 //!
-//! // Insert 2-3 examples of usage and code snippets that show how to use <INSERT_CUSTOM_MODULE_NAME> module in a custom module.
+//! Insert 2-3 examples of usage and code snippets that show how to use <INSERT_CUSTOM_MODULE_NAME> module in a custom module.
 //!
-//! \### Prerequisites
+//! ### Prerequisites
 //!
-//! // Show how to include necessary imports for <INSERT_CUSTOM_MODULE_NAME> and derive
-//! // your module configuration trait with the `INSERT_CUSTOM_MODULE_NAME` trait.
+//! Show how to include necessary imports for <INSERT_CUSTOM_MODULE_NAME> and derive
+//! your module configuration trait with the `INSERT_CUSTOM_MODULE_NAME` trait.
 //!
-//! \```rust
+//! ```rust
 //! use <INSERT_CUSTOM_MODULE_NAME>;
 //!
 //! pub trait Trait: <INSERT_CUSTOM_MODULE_NAME>::Trait { }
-//! \```
+//! ```
 //!
-//! \### Simple Code Snippet
+//! ### Simple Code Snippet
 //!
-//! // Show a simple example (e.g. how to query a public getter function of <INSERT_CUSTOM_MODULE_NAME>)
+//! Show a simple example (e.g. how to query a public getter function of <INSERT_CUSTOM_MODULE_NAME>)
 //!
-//! \### Example from SRML
-//!
-//! // Show a usage example in an actual runtime
-//!
-//! // See:
-//! // - Substrate TCR https://github.com/parity-samples/substrate-tcr
-//! // - Substrate Kitties https://shawntabrizi.github.io/substrate-collectables-workshop/#/
-//!
-//! \## Genesis Config
+//! ## Genesis Config
 //!
 //! <!-- Original author of paragraph: @joepetrowski -->
 //!
-//! \## Dependencies
+//! ## Dependencies
 //!
-//! // Dependencies on other SRML modules and the genesis config should be mentioned,
-//! // but not the Rust Standard Library.
-//! // Genesis configuration modifications that may be made to incorporate this module
-//! // Interaction with other modules
+//! Dependencies on other SRML modules and the genesis config should be mentioned,
+//! but not the Rust Standard Library.
+//! Genesis configuration modifications that may be made to incorporate this module
+//! Interaction with other modules
 //!
 //! <!-- Original author of heading: @AmarRSingh -->
 //!
-//! \## Related Modules
+//! ## Related Modules
 //!
-//! // Interaction with other modules in the form of a bullet point list
+//! Interaction with other modules in the form of a bullet point list
 //!
-//! \## References
+//! ## References
 //!
 //! <!-- Original author of paragraph: @joepetrowski -->
 //!
-//! // Links to reference material, if applicable. For example, Phragmen, W3F research, etc.
-//! // that the implementation is based on.
-//! </pre></p></details>
+//! Links to reference material, if applicable. For example, Phragmen, W3F research, etc.
+//! that the implementation is based on.
 
 // Ensure we're `no_std` when compiling for Wasm.
 #![cfg_attr(not(feature = "std"), no_std)]

@@ -1,5 +1,5 @@
 [package]
-name = "example-module"
+name = "runtime-example-module"
 version = "0.1.0"
 authors = ["Mokhtar Naamani <mokhtar.naamani@gmail.com>"]
 edition = "2018"
