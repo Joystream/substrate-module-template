@@ -215,11 +215,11 @@
 #![cfg_attr(not(feature = "std"), no_std)]
 
 use srml_support::traits::Currency;
-use srml_support::{decl_event, decl_module, decl_storage, dispatch::Result, StorageValue};
+use srml_support::{decl_event, decl_module, decl_storage, dispatch, StorageValue};
 use system::ensure_signed;
 
 pub trait MembershipRegistry<T: system::Trait> {
-    fn ensure_member(who: T::AccountId) -> Result;
+    fn ensure_member(who: T::AccountId) -> Result<(), &'static str>;
 }
 
 pub type BalanceOf<T> =
@@ -366,7 +366,7 @@ decl_module! {
         // no progress.
         //
         // If you don't respect these rules, it is likely that your chain will be attackable.
-        fn accumulate_dummy(origin, increase_by: BalanceOf<T>) -> Result {
+        fn accumulate_dummy(origin, increase_by: BalanceOf<T>) -> dispatch::Result {
             // This is a public call, so we ensure that the origin is some signed account.
             let sender = ensure_signed(origin)?;
 
@@ -444,7 +444,7 @@ decl_module! {
 impl<T: Trait> Module<T> {
     // Add public immutables and private mutables.
     #[allow(dead_code)]
-    fn accumulate_foo(origin: T::Origin, increase_by: BalanceOf<T>) -> Result {
+    fn accumulate_foo(origin: T::Origin, increase_by: BalanceOf<T>) -> dispatch::Result {
         let _sender = ensure_signed(origin)?;
 
         let prev = <Foo<T>>::get();
@@ -513,7 +513,7 @@ mod tests {
 
     pub struct MockMembershipRegistry {}
     impl MembershipRegistry<Test> for MockMembershipRegistry {
-        fn ensure_member(_who: <Test as system::Trait>::AccountId) -> Result {
+        fn ensure_member(_who: <Test as system::Trait>::AccountId) -> Result<(), &'static str> {
             Ok(())
         }
     }
